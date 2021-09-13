@@ -1,0 +1,32 @@
+{% load bootstrap4 %}
+
+{% if filter %}
+  <form method="get">
+    <div class='row'>
+      <div class="form-group col-sm-4 col-md-3">
+        {% bootstrap_field filter.form.player__player %}
+        {% bootstrap_field filter.form.player__team %}
+        {% bootstrap_field filter.form.player__age %}
+        {% bootstrap_field filter.form.player__height_in %}
+        {% bootstrap_field filter.form.player__weight_lb %}
+      </div>
+      <div class="form-group col-sm-4 col-md-3">
+        {% bootstrap_field filter.form.season %}
+        {% bootstrap_field filter.form.poss %}
+        {% bootstrap_field filter.form.usage_score %}
+        {% bootstrap_field filter.form.versatility_score %}
+      </div>
+      <div class="form-group col-sm-4 col-md-3">
+        {% bootstrap_field filter.form.matchup_height %}
+        {% bootstrap_field filter.form.matchup_weight %}
+        {% bootstrap_field filter.form.poss_vs_lte75 %}
+        {% bootstrap_field filter.form.poss_vs_lte78 %}
+        {% bootstrap_field filter.form.poss_vs_lte81 %}
+        {% bootstrap_field filter.form.poss_vs_gte82 %}
+      </div>
+    </div>
+    <div class="form-group btn">
+    {% bootstrap_button 'filter' %}
+    </div>
+  </form>
+{% endif %}

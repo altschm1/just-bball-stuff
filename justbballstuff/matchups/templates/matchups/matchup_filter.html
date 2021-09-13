@@ -1,0 +1,33 @@
+{% load bootstrap4 %}
+
+{% if filter %}
+  <form method="get">
+    <div class='row'>
+      <div class="form-group col-sm-4 col-md-3">
+        <h4 style="margin-top: 0">Offensive Player</h4>
+        {% bootstrap_field filter.form.offense_player__player %}
+        {% bootstrap_field filter.form.offense_player__team %}
+        {% bootstrap_field filter.form.offense_player__age %}
+        {% bootstrap_field filter.form.offense_player__height_in %}
+        {% bootstrap_field filter.form.offense_player__weight_lb %}
+      </div>
+      <div class="form-group col-sm-4 col-md-3">
+        <h4 style="margin-top: 0">Defensive Player</h4>
+        {% bootstrap_field filter.form.defense_player__player %}
+        {% bootstrap_field filter.form.defense_player__team %}
+        {% bootstrap_field filter.form.defense_player__age %}
+        {% bootstrap_field filter.form.defense_player__height_in %}
+        {% bootstrap_field filter.form.defense_player__weight_lb %}
+      </div>
+      <div class="form-group col-sm-4 col-md-3">
+        <h4 style="margin-top: 0">Stats</h4>
+        {% bootstrap_field filter.form.season %}
+        {% bootstrap_field filter.form.seconds %}
+        {% bootstrap_field filter.form.possessions %}
+      </div>
+    </div>
+    <div class="form-group btn">
+    {% bootstrap_button 'filter' %}
+    </div>
+  </form>
+{% endif %}

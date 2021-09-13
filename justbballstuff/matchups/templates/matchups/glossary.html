@@ -1,0 +1,243 @@
+{% extends "matchups/base.html" %}
+
+{% block content %}
+  <h1>Glossary</h1>
+  <h2>Basic</h2>
+  <p>Stats from this page provide tracking stats on all matchup data through the course of the season.</p>
+  <p>Stats from Basic tab are all of the same stats found at https://www.nba.com/stats/player/{unique_nba.com_player_id}/head-to-head/ with a few additional metrics.</p>
+  <p>For more information on how nba.com tracks and record these matchup assignments, check out this link <a href='https://www.nba.com/stats/articles/nba-com-stats-unveils-improved-matchup-data-for-2019-20-season/'>here</a>.</p>
+  <p>Some notes:</p>
+  <ul>
+    <li>Matchup data here does account for switches that take place during a defensive possession when calculating the number of partial possessions.</li>
+    <li>Shot, assists, and turnovers are assigned to whoever was defending the offensive player at that moment.</li>
+    <li>Double teams and help defense is accounted for, so if a shot or assist or turnover is taken when guarded by two defenders, both defenders will be credited with that shot, assist, or turnover.</li>
+    <li>Matchup stats only account for what happens in the front-court, not the backcourt.</li>
+    <li>These changes were implemented in 2019-20, whether they went back and made these changes for 2017-18 and and 2018-19, I do not know.</li>
+  </ul>
+  <table class="table table-striped">
+    <tr>
+      <th>OFF PLAYER</th>
+      <td>Name of the Offensive Player</td>
+    </tr>
+    <tr>
+      <th>OFF TEAM</th>
+      <td>Acronym of Team of the Offensive Player<br>OFF TEAM is whatever team the player finished the season with</td>
+    </tr>
+    <tr>
+      <th>OFF AGE</th>
+      <td>Age of the Offensive Player at the Start of that Season</td>
+    </tr>
+    <tr>
+      <th>OFF HEIGHT</th>
+      <td>Height of the Offensive Player in feet and inches</td>
+    </tr>
+    <tr>
+      <th>OFF WEIGHT</th>
+      <td>Weight of the Offensive Player in pounds</td>
+    </tr>
+    <tr>
+      <th>DEF PLAYER</th>
+      <td>Name of the Defensive Player</td>
+    </tr>
+    <tr>
+      <th>DEF TEAM</th>
+      <td>Acronym of Team of the Defensive Player<br>DEF TEAM is whatever team the player finished the season with</td>
+    </tr>
+    <tr>
+      <th>DEF AGE</th>
+      <td>Age of the Defensive Player at the Start of that Season in years</td>
+    </tr>
+    <tr>
+      <th>DEF HEIGHT</th>
+      <td>Height of the Defensive Player in feet and inches</td>
+    </tr>
+    <tr>
+      <th>DEF WEIGHT</th>
+      <td>Weight of the Defensive Player in pounds</td>
+    </tr>
+    <tr>
+      <th>SEASON</th>
+      <td>Regular Season</td>
+    </tr>
+    <tr>
+      <th>MINS</th>
+      <td>the Number of Minutes and Seconds that OFF PLAYER and DEF PLAYER were matched up against each other as calculated by nba.com (see the above link for methodology)</td>
+    </tr>
+    <tr>
+      <th>POSS</th>
+      <td>the Number of Partial Possessions that OFF PLAYER and DEF PLAYER were matched up against each other as calculated by nba.com (see the above link for methodology)</td>
+    </tr>
+    <tr>
+      <th>PTS</th>
+      <td>the Number of Points that OFF PLAYER scored when matched up against DEF PLAYER</td>
+    </tr>
+    <tr>
+      <th>SHOT ATTEMPTS*</th>
+      <td>the Number of Shots* that OFF PLAYER took when matched up against DEF PLAYER<br>This is an estimated number of shot attempts that is calculated by the following:<br><code>2PA + 3PA + (0.44 * FTA)</code><br>The <code>0.44 * FTA</code> is how FTAs are typically converted to shot attempts when factoring in and-ones and fouled three-pointers, hence shot attempts* is only an estimate of the actual number of shots taken.</td>
+    </tr>
+    <tr>
+      <th>2PM</th>
+      <td>the Number of Two Pointers Made by OFF PLAYER when matched up against DEF PLAYER</td>
+    </tr>
+    <tr>
+      <th>2PA</th>
+      <td>the Number of Two Pointers Attempted by OFF PLAYER when matched up against DEF PLAYER</td>
+    </tr>
+    <tr>
+      <th>2P%</th>
+      <td>the Number of Two Pointers Made divided by the number of Two Point Attempts<br><code>2PM / 2PA</code></td>
+    </tr>
+    <tr>
+      <th>3PM</th>
+      <td>the Number of Three Pointers Made by OFF PLAYER when matched up against DEF PLAYER</td>
+    </tr>
+    <tr>
+      <th>3PA</th>
+      <td>the Number of Three Pointers Attempted by OFF PLAYER when matched up against DEF PLAYER</td>
+    </tr>
+    <tr>
+      <th>3P%</th>
+      <td>the Number of Three Pointers Made divided by the number of Three Point Attempts<br><code>3PM / 3PA</code></td>
+    </tr>
+    <tr>
+      <th>FTM</th>
+      <td>the Number of Free Throws Made by OFF PLAYER when fouled/defended by DEF PLAYER</td>
+    </tr>
+    <tr>
+      <th>FTA</th>
+      <td>the Number of Free Throws Attempted by OFF PLAYER when fouled/defended by DEF PLAYER</td>
+    </tr>
+    <tr>
+      <th>AST</th>
+      <td>the Number of Assists by OFF PLAYER when matched up against DEF PLAYER</td>
+    </tr>
+    <tr>
+      <th>TOV</th>
+      <td>the Number of Turnovers by OFF PLAYER when matched up against DEF PLAYER</td>
+    </tr>
+    <tr>
+      <th>eFG%</th>
+      <td>the Effective Field Goal Percentage by OFF PLAYER when matched up against DEF PLAYER<br><code>(2PM + 1.5 * 3PM) / (2PA + 3PA)</code></td>
+    </tr>
+    <tr>
+      <th>TS%</th>
+      <td>the True Shooting Percentage by OFF PLAYER when matched up against DEF PLAYER<br><code>(FTM + 2 * 2PM + 3 * 3PM) / (2 * (2PA + 3PA + (0.44 * FTA)))</code></td>
+    </tr>
+    <tr>
+      <th>3PAr</th>
+      <td>the Three Point Attempt Rate by OFF PLAYER when matched up against DEF PLAYER<br><code>(3PA) / (2PA + 3PA)</code></td>
+    </tr>
+    <tr>
+      <th>FTr</th>
+      <td>the Free Throw Rate by OFF PLAYER when matched up against DEF PLAYER<br><code>(FTA) / (2PA + 3PA)</code></td>
+    </tr>
+  </table>
+  <h2>Stats</h2>
+  <p>Stats on the tab <i>Stats</i> are aggregate statistics that were created by me to help better contextualize the role of the defensive players.</p>
+  <p>These stats are mainly in a first iteration for me and will need to be improved upon.</p>
+  <p>A lot of the idea behind these stats were inspired by the excellent work done by Tim and Krishna Narsu at Bball-Index (https://www.bball-index.com/) where they have already put in a lot of work towards measuring and quanitifying Defensive Roles, Matchup Difficulty, and Matchup Versatility.</p>
+  <p>My work here isn't meant as an alternative or improvement to their work (being that this is only my first iteration, it is most definitely not an improvement at this stage).  Rather, this is my attempt to get my feet wet with working with this type of data.</p>
+  <p>I will eventually write posts that explain the rationale and methodology behind each of these metrics, flaws and biases of these metrics, what can and needs to be improved, and what can and can't be taken away from these metrics.</p>
+  <p>But for now, I will give a brief overview of each of these metrics.</p>
+  <table class="table table-striped">
+    <tr>
+      <th>PLAYER</th>
+      <td>Name of the Player</td>
+    </tr>
+    <tr>
+      <th>TEAM</th>
+      <td>Acronym of Team of the Player<br>TEAM is whatever team the player finished the season with</td>
+    </tr>
+    <tr>
+      <th>AGE</th>
+      <td>Age of the Player at the Start of that Season</td>
+    </tr>
+    <tr>
+      <th>HEIGHT</th>
+      <td>Height of the Player in feet and inches</td>
+    </tr>
+    <tr>
+      <th>WEIGHT</th>
+      <td>Weight of the Player in pounds</td>
+    </tr>
+    <tr>
+      <th>SEASON</th>
+      <td>Regular Season</td>
+    </tr>
+    <tr>
+      <th>POSS</th>
+      <td>the total number of Partial Poss played by Player in that Season</td>
+    </tr>
+    <tr>
+      <th>USG SCORE</th>
+      <td>
+        <b>Usage Score</b><br>
+        a proxy for the matchup difficulty faced by a player<br>
+        measured on a scale of 0 to 100<br>
+        Note: This does not necessarily measure how good a defender is at defending those high usage players!<br>
+        <b>Methodology</b>
+        <br>Give each offensive player an adjusted offensive usage score: <code>(2PA + 3PA + (0.44 * FTA) + TOV) * OFF POSS**-0.5</code><br>
+        For each defensive player, find the weighted average of the adjusted offensive usage score each defensive player played against for the entire season where weights are the number of POSS played against each offensive player<br>
+        For each season, convert adjusted scores to percentiles on a scale from 0 to 100.
+      </td>
+    </tr>
+    <tr>
+      <th>VERSATILITY SCORE</th>
+      <td>
+        <b>Versatility Score</b><br>
+        a proxy for how many different sized player a defender is asked to defend<br>
+        measured on a scale of 0 to 100<br>
+        Note: This does not necessarily measure how good a defender is at switching!<br>
+        <b>Methodology</b>
+        <br>Measure the frequency of how often a defender measures 4 different type of offensive players<br>
+        Players 6'3 and shorter; Players 6'4 to 6'6; Players 6'7 to 6'9; Players 6'10 and taller<br>
+        Based on these frequency, calculate the <a href='https://en.wikipedia.org/wiki/Entropy_(information_theory)'>Shannon entropy</a>: <code>H(X) &equals; &minus;&sum;P(x<sub>i</sub>)logP(x<sub>i</sub>)</code><br>
+        Players with a more even distribution between the four groups will have a higher Shannon entropy.<br>
+        For each season, convert these vertsatility scores to percentiles on a scale from 0 to 100.
+    </tr>
+    <tr>
+      <th>AVG MATCHUP HEIGHT</th>
+      <td>
+        <b>Average Opposing Matchup Height</b><br>
+        The Average Height that each player defended against over the course of the season
+      </td>
+    </tr>
+    <tr>
+      <th>AVG MATCHUP WEIGHT</th>
+      <td><b>Average Opposing Matchup Weight</b><br>
+      The Average Weight that each player defended against over the course of the season</td>
+    </tr>
+    <tr>
+      <th>POSS <= 6'3</th>
+      <td>the Number of Possessions guarding Players 6'3 and shorter</td>
+    </tr>
+    <tr>
+      <th>POSS 6'4 to 6'6</th>
+      <td>the Number of Possessions guarding Players 6'4 to 6'6</td>
+    </tr>
+    <tr>
+      <th>POSS 6'7 to 6'9</th>
+      <td>the Number of Possessions guarding Players 6'7 to 6'9</td>
+    </tr>
+    <tr>
+      <th>POSS >= 6'10</th>
+      <td>the Number of Possessions guarding Players 6'10 and taller</td>
+    </tr>
+    <tr>
+      <th>FREQ <= 6'3</th>
+      <td>How Frequently They Guarded Someone 6'3 and Shorter</td>
+    </tr>
+    <tr>
+      <th>FREQ 6'4 to 6'6</th>
+      <td>How Frequently They Guarded Someone 6'4 to 6'6</td>
+    </tr>
+    <tr>
+      <th>FREQ 6'7 to 6'9</th>
+      <td>How Frequently They Guarded Someone 6'7 to 6'9</td>
+    </tr>
+    <tr>
+      <th>FREQ >= 6'10</th>
+      <td>How Frequently They Guarded Someone 6'10 and Taller</td>
+    </tr>
+  </table>
+{% endblock %}

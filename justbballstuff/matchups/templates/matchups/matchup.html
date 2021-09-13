@@ -1,0 +1,8 @@
+{% extends "matchups/base.html" %}
+{% load render_table from django_tables2 %}
+{% load bootstrap4 %}
+
+{% block content %}
+  {% include 'matchups/matchup_filter.html' %}
+  {% render_table table %}
+{% endblock %}
