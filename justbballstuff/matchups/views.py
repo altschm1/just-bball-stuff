@@ -11,15 +11,15 @@ class BasicMatchupView(SingleTableMixin, FilterView):
     table_class = MatchupTable
     template_name = 'matchups/matchup.html'
     filterset_class = MatchupFilter
-    extra_context={'title_head': "Matchups: Basic"}
+    extra_context={'title_head': "Matchups: Basic", "matchups" : True, "basic": True}
 
 class MatchupStatView(SingleTableMixin, FilterView):
     model = PlayerStat
     table_class = StatTable
     template_name = 'matchups/stats.html'
     filterset_class = StatFilter
-    extra_context={'title_head': "Matchups: Stats"}
+    extra_context={'title_head': "Matchups: Stats", "matchups" : True, "stats": True}
 
 
 def glossary(request):
-    return render(request, 'matchups/glossary.html')
+    return render(request, 'matchups/glossary.html', {'title_head': "Matchups: Glossary", "matchups" : True, "glossary": True})

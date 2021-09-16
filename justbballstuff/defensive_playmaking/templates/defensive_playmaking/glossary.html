@@ -1,0 +1,67 @@
+{% extends "defensive_playmaking/base.html" %}
+
+{% block content %}
+  <h1>Glossary</h1>
+  <p>Stats are provided in:</p>
+  <ul>
+    <li>Season Totals</li>
+    <li>Per Games</li>
+    <li>Per 36 Minutes</li>
+    <li>Percentiles for Per Games (Rank Per Game)</li>
+    <li>Percentiles for Per 36 Minutes (Rank Per 36)</li>
+  </ul>
+  <table class="table table-striped">
+    <tr>
+      <th>PLAYER</th>
+      <td>Name of the Player</td>
+    </tr>
+    <tr>
+      <th>TEAM</th>
+      <td>Acronym of Team of the Player<br>TEAM is whatever team the player finished the season with (according to https://www.nba.com/stats/players/bio/ at least).</td>
+    </tr>
+    <tr>
+      <th>AGE</th>
+      <td>Age of the Player at the Start of that Season</td>
+    </tr>
+    <tr>
+      <th>HEIGHT</th>
+      <td>Height of the Player in feet and inches</td>
+    </tr>
+    <tr>
+      <th>WEIGHT</th>
+      <td>Weight of the Player in pounds</td>
+    </tr>
+    <tr>
+      <th>SEASON</th>
+      <td>Regular Season</td>
+    </tr>
+    <tr>
+      <th>GP</th>
+      <td>the Number of Games Played in that Season</td>
+    </tr>
+    <tr>
+      <th>MP</th>
+      <td>the Number of Minutes Played in that Season</td>
+    </tr>
+    <tr>
+      <th>STL</th>
+      <td>Steals</td>
+    </tr>
+    <tr>
+      <th>BLK</th>
+      <td>Blocks</td>
+    </tr>
+    <tr>
+      <th>DEFLECTIONS</th>
+      <td>Deflections</td>
+    </tr>
+    <tr>
+      <th>STOCKS</th>
+      <td>Steals + Blocks: <code>STL + BLK</code><br>no, I did not make that term up but I don't know of too many people that have quanitified this frequently discussed term.</td>
+    </tr>
+    <tr>
+      <th>DEALS</th>
+      <td>Deflections + Steals: <code>Deflections + STL</code><br>I think I made this term up unless someone beat me to it. clever, corny? maybe both? you be the judge</td>
+    </tr>
+  </table>
+{% endblock %}

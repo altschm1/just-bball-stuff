@@ -2,10 +2,11 @@
 
 {% block content %}
   <h1>Glossary</h1>
+  <p class="alert alert-danger">Please Note: These metrics can be extremely noisy and using these as the be-all/end-all for quantifying on-ball defense is bad!  In fact, defense is extremely hard to quantify because a lot of the important stuff can't be effectively quantified!  These metrics are better suited for the purpose of adding context to what you see (ie who is guarding who) and for better capturing defensive roles, which is an important part of the defensive dialogue. Bball-Index (which is NOT Just BBall Stuff but is definitely worth checking out: <a target="_blank" rel="noopener noreferrer" href='https://www.bball-index.com/'>https://www.bball-index.com/</a>) has done wonderful works in that area.  Use the matchup event stats (2PM, 2PA, TOV, etc) with EXTREME caution and only use it if you actually saw those possessions with your own eyes (because evaluating process >>>>> results when it comes to defense)!</p>
   <h2>Basic</h2>
   <p>Stats from this page provide tracking stats on all matchup data through the course of the season.</p>
   <p>Stats from Basic tab are all of the same stats found at https://www.nba.com/stats/player/{unique_nba.com_player_id}/head-to-head/ with a few additional metrics.</p>
-  <p>For more information on how nba.com tracks and record these matchup assignments, check out this link <a href='https://www.nba.com/stats/articles/nba-com-stats-unveils-improved-matchup-data-for-2019-20-season/'>here</a>.</p>
+  <p>For more information on how nba.com tracks and record these matchup assignments, check out this link <a target="_blank" rel="noopener noreferrer" href='https://www.nba.com/stats/articles/nba-com-stats-unveils-improved-matchup-data-for-2019-20-season/'>here</a>.</p>
   <p>Some notes:</p>
   <ul>
     <li>Matchup data here does account for switches that take place during a defensive possession when calculating the number of partial possessions.</li>
@@ -21,7 +22,7 @@
     </tr>
     <tr>
       <th>OFF TEAM</th>
-      <td>Acronym of Team of the Offensive Player<br>OFF TEAM is whatever team the player finished the season with</td>
+      <td>Acronym of Team of the Offensive Player<br>OFF TEAM is whatever team the player finished the season with (according to https://www.nba.com/stats/players/bio/ at least).</td>
     </tr>
     <tr>
       <th>OFF AGE</th>
@@ -41,7 +42,7 @@
     </tr>
     <tr>
       <th>DEF TEAM</th>
-      <td>Acronym of Team of the Defensive Player<br>DEF TEAM is whatever team the player finished the season with</td>
+      <td>Acronym of Team of the Defensive Player<br>DEF TEAM is whatever team the player finished the season with (https://www.nba.com/stats/players/bio/ at least)</td>
     </tr>
     <tr>
       <th>DEF AGE</th>
@@ -101,11 +102,11 @@
     </tr>
     <tr>
       <th>FTM</th>
-      <td>the Number of Free Throws Made by OFF PLAYER when fouled/defended by DEF PLAYER</td>
+      <td>the Number of Free Throws Made by OFF PLAYER when matched up against DEF PLAYER</td>
     </tr>
     <tr>
       <th>FTA</th>
-      <td>the Number of Free Throws Attempted by OFF PLAYER when fouled/defended by DEF PLAYER</td>
+      <td>the Number of Free Throws Attempted by OFF PLAYER when matched up against DEF PLAYER</td>
     </tr>
     <tr>
       <th>AST</th>
@@ -174,10 +175,11 @@
         <b>Usage Score</b><br>
         a proxy for the matchup difficulty faced by a player<br>
         measured on a scale of 0 to 100<br>
+        only players with at least 100 defensive possessions were scored<br>
         Note: This does not necessarily measure how good a defender is at defending those high usage players!<br>
         <b>Methodology</b>
         <br>Give each offensive player an adjusted offensive usage score: <code>(2PA + 3PA + (0.44 * FTA) + TOV) * OFF POSS**-0.5</code><br>
-        For each defensive player, find the weighted average of the adjusted offensive usage score each defensive player played against for the entire season where weights are the number of POSS played against each offensive player<br>
+        For each defensive player, find the weighted average of the adjusted offensive usage each defensive player played against for the entire season where weights are the number of POSS played against each offensive player<br>
         For each season, convert adjusted scores to percentiles on a scale from 0 to 100.
       </td>
     </tr>
@@ -187,13 +189,14 @@
         <b>Versatility Score</b><br>
         a proxy for how many different sized player a defender is asked to defend<br>
         measured on a scale of 0 to 100<br>
+        only players with at least 100 defensive possessions were scored<br>
         Note: This does not necessarily measure how good a defender is at switching!<br>
         <b>Methodology</b>
         <br>Measure the frequency of how often a defender measures 4 different type of offensive players<br>
         Players 6'3 and shorter; Players 6'4 to 6'6; Players 6'7 to 6'9; Players 6'10 and taller<br>
         Based on these frequency, calculate the <a href='https://en.wikipedia.org/wiki/Entropy_(information_theory)'>Shannon entropy</a>: <code>H(X) &equals; &minus;&sum;P(x<sub>i</sub>)logP(x<sub>i</sub>)</code><br>
         Players with a more even distribution between the four groups will have a higher Shannon entropy.<br>
-        For each season, convert these vertsatility scores to percentiles on a scale from 0 to 100.
+        For each season, convert these Shannon entropy scores to percentiles on a scale from 0 to 100.
     </tr>
     <tr>
       <th>AVG MATCHUP HEIGHT</th>

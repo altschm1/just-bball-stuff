@@ -1,0 +1,8 @@
+{% extends "defensive_playmaking/base.html" %}
+{% load render_table from django_tables2 %}
+{% load bootstrap4 %}
+
+{% block content %}
+  {% include 'defensive_playmaking/filters.html' %}
+  {% render_table table %}
+{% endblock %}
