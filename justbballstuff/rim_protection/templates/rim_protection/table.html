@@ -3,6 +3,8 @@
 {% load bootstrap4 %}
 
 {% block content %}
+  <h4 class='display-4'>{{ title_head }}</h4>
+  <p>For every player that has been designated a C per stats.nba.com since 2017-18, get defended FG% at the rim along with points saved (field goals points allowed minus field goal points expected) along with percentiles for players who played at least 500 minutes.</p>
   {% include 'rim_protection/filters.html' %}
   {% render_table table %}
 {% endblock %}

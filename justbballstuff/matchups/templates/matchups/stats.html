@@ -3,6 +3,8 @@
 {% load bootstrap4 %}
 
 {% block content %}
+  <h4 class='display-4'>{{ title_head }}</h4>
+  <p>Get all the basic matchup data that has taken place since 2017-18 along with some aggregated stats to track matchup difficulty, versatility against different sized players, average height/weight played against and more to come.</p>
   {% include 'matchups/stat_filter.html' %}
   {% render_table table %}
 {% endblock %}
