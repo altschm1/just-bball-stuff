@@ -3,10 +3,6 @@ from .models import Matchup, Player, PlayerStat
 
 players = Player.objects.all()
 
-def get_players():
-    player_names = players.values('player').distinct().order_by('player')
-    return [(p['player'], p['player']) for p in player_names]
-
 def get_teams():
     teams = players.values('team').distinct().order_by('team')
     return [(t['team'], t['team']) for t in teams]
@@ -17,12 +13,12 @@ def get_seasons():
 
 
 class MatchupFilter(django_filters.FilterSet):
-    offense_player__player = django_filters.ChoiceFilter(label="Player", choices=get_players())
+    offense_player__player = django_filters.CharFilter(label="Player", lookup_expr='icontains')
     offense_player__team = django_filters.MultipleChoiceFilter(label="Team", choices=get_teams())
     offense_player__age = django_filters.RangeFilter(label="Player Age Range")
     offense_player__height_in = django_filters.RangeFilter(label="Player Height (in inches) Range")
     offense_player__weight_lb = django_filters.RangeFilter(label="Player Weight (in pounds) Range")
-    defense_player__player = django_filters.ChoiceFilter(label="Player", choices=get_players())
+    defense_player__player = django_filters.CharFilter(label="Player", lookup_expr='icontains')
     defense_player__team = django_filters.MultipleChoiceFilter(label="Team", choices=get_teams())
     defense_player__age = django_filters.RangeFilter(label="Player Age Range")
     defense_player__height_in = django_filters.RangeFilter(label="Player Height (in inches) Range")
@@ -50,7 +46,7 @@ class MatchupFilter(django_filters.FilterSet):
         )
 
 class StatFilter(django_filters.FilterSet):
-    player__player = django_filters.ChoiceFilter(label="Player", choices=get_players())
+    player__player = django_filters.CharFilter(label="Player", lookup_expr='icontains')
     player__team = django_filters.MultipleChoiceFilter(label="Team", choices=get_teams())
     player__age = django_filters.RangeFilter(label="Player Age Range")
     player__height_in = django_filters.RangeFilter(label="Player Height (in inches) Range")

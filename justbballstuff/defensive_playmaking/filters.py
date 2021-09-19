@@ -3,10 +3,6 @@ import django_filters
 
 stats = DefensivePlaymakingStat.objects.all()
 
-def get_players():
-    player_names = stats.values('player').distinct().order_by('player')
-    return [(p['player'], p['player']) for p in player_names]
-
 def get_teams():
     teams = stats.values('team').distinct().order_by('team')
     return [(t['team'], t['team']) for t in teams]
@@ -17,7 +13,7 @@ def get_seasons():
 
 
 class DefensivePlaymakingFilter(django_filters.FilterSet):
-    player = django_filters.ChoiceFilter(label="Player", choices=get_players())
+    player = django_filters.CharFilter(label="Player", lookup_expr='icontains')
     team = django_filters.MultipleChoiceFilter(label="Team", choices=get_teams())
     age = django_filters.RangeFilter(label="Player Age Range")
     height_in = django_filters.RangeFilter(label="Player Height (in inches) Range")
