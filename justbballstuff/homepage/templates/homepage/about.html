@@ -1,0 +1,101 @@
+{% extends 'justbballstuff/base.html' %}
+
+{% block content %}
+  <h1 class='text-center display-4'>{{ title_head }}</h1>
+  <h4>What is Just Bball Stuff</h4>
+  <p>It's really just a website that contains a lot of cool basketball stuff.</p>
+
+  <h4>What Has Been Done So Far?</h4>
+  <p>The following subsections have been completed:</p>
+  <table class="table table-striped">
+    <tr>
+      <td>Defensive Playmaking</td>
+      <td>For every regualr season since 2017-18, get the steal, block, deflections, stocks (steals + blocks), and deals (deflections + steals) for every player.  Stats come in the form Total, Per Game, and Per 36 Minutes.  Percentile Ranks are kept for players who played at least 500 minutes (when looking at per game and per 36 minutes).  All stats are explained more closely in the Glossary section.</td>
+    </tr>
+    <tr>
+      <td>Matchups</td>
+      <td>For every regualr season since 2017-18, get the matchup data (ie offensive player versus defensive player data) for every player.  Also get aggregated data that measures matchup difficulty, matchup versatility, and average matchup size.   All stats are explained more closely in the Glossary section.</td>
+    </tr>
+    <tr>
+      <td>Rim Protection</td>
+      <td>For every regualr season since 2017-18, get data for shots contested within 6 feet of the rim for all players that were designated Centers or Forward/Centers.  Stats come in the form Total, Per Game, and Per 36 Minutes.   All stats are explained more closely in the Glossary section.</td>
+    </tr>
+  </table>
+
+  <h4>What Will Be Done in the Future?</h4>
+  <p>The following subsections have been completed:</p>
+  <table class="table table-striped">
+    <tr>
+      <td>Defensive Rebounding</td>
+    </tr>
+    <tr>
+      <td>Synergy Playtypes</td>
+    </tr>
+    <tr>
+      <td>Shot Efficiency/Volume/Frequency/Difficulty for Different Locations (Restricted Area, non-RA Paint, Midrange, Corner, Above-the-Break)</td>
+    </tr>
+    <tr>
+      <td>Volume for Different Shot Types (Dunks/Layups/Jump Shots/Hook Shots/Tip Shots/Pullups/Stepbacks/Running/Floating/Driving/etc)</td>
+    </tr>
+    <tr>
+      <td>Drives</td>
+    </tr>
+    <tr>
+      <td>Finishing</td>
+    </tr>
+    <tr>
+      <td>Free Throws</td>
+    </tr>
+    <tr>
+      <td>Pull-ups</td>
+    </tr>
+    <tr>
+      <td>Catch-and-shoots</td>
+    </tr>
+    <tr>
+      <td>Shot Difficulty</td>
+    </tr>
+    <tr>
+      <td>Passing</td>
+    </tr>
+    <tr>
+      <td>Offensive Rebounding</td>
+    </tr>
+    <tr>
+      <td>Screening/Popping/Rolling</td>
+    </tr>
+    <tr>
+      <td>General Stats</td>
+    </tr>
+    <tr>
+      <td>Draft Prospects</td>
+    </tr>
+    <tr>
+      <td>Articles</td>
+    </tr>
+  </table>
+
+  <h4>This Project is Open-Sourced:</h4>
+  <table class="table table-striped">
+    <tr>
+      <td>Website</td>
+      <td>https://github.com/altschm1/just-bball-stuff</td>
+    </tr>
+    <tr>
+      <td>Defensive Playmaking</td>
+      <td>https://github.com/altschm1/defense-playmaking</td>
+    </tr>
+    <tr>
+      <td>Matchups</td>
+      <td>https://github.com/altschm1/nba-matchup-data</td>
+    </tr>
+    <tr>
+      <td>Rim Protection</td>
+      <td>https://github.com/altschm1/rim-protection</td>
+    </tr>
+  </table>
+
+
+
+
+{% endblock %}
