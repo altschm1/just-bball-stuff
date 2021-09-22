@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'matchups.apps.MatchupsConfig',
     'defensive_playmaking.apps.DefensivePlaymakingConfig',
     'rim_protection.apps.RimProtectionConfig',
+    'defense_synergy.apps.DefenseSynergyConfig',
 ]
 
 MIDDLEWARE = [

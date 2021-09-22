@@ -22,4 +22,5 @@ urlpatterns = [
     path('matchups/', include('matchups.urls')),
     path('defensive-playmaking/', include('defensive_playmaking.urls')),
     path('rim-protection/', include('rim_protection.urls')),
+    path('defensive-synergy/', include('defense_synergy.urls')),
 ]

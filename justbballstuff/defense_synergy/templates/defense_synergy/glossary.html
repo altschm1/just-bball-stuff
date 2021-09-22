@@ -1,0 +1,160 @@
+{% extends "defense_synergy/base.html" %}
+
+{% block content %}
+  <h1 class='display-4'>Glossary</h1>
+  <p class="alert alert-danger">Please Note: Defensive Synergy stats are better equipped to describe role and what type of scoring possessions players most frequently defend.  There is also a lot of noise to the stats used here. Pick n Roll ball handler and screener point per possession stats can be influenced by the type of defensive coverage (drop vs hedge).  Spot-up can be influenced by how aggressive the help defense is.  Plus there is also just a lot of noise in these stats due to the fact that these stats don't capture matchup difficulty or deterence.  These stats are also vulnerable to the small sample/make-or-miss nature of the league.  So use these stats with care and caution.</p>
+
+  <p>Stats are provided in:</p>
+  <ul>
+    <li>Season Totals</li>
+    <li>Per Games</li>
+    <li>Per 36 Minutes</li>
+    <li>Summary</li>
+  </ul>
+  <table class="table table-striped">
+    <tr>
+      <th>PLAYER</th>
+      <td>Name of the Player</td>
+    </tr>
+    <tr>
+      <th>TEAM</th>
+      <td>Acronym of Team of the Player<br>TEAM is whatever team the player finished the season with (according to https://www.nba.com/stats/players/bio/ at least).</td>
+    </tr>
+    <tr>
+      <th>AGE</th>
+      <td>Age of the Player at the Start of that Season</td>
+    </tr>
+    <tr>
+      <th>HEIGHT</th>
+      <td>Height of the Player in feet and inches</td>
+    </tr>
+    <tr>
+      <th>WEIGHT</th>
+      <td>Weight of the Player in pounds</td>
+    </tr>
+    <tr>
+      <th>SEASON</th>
+      <td>Regular Season</td>
+    </tr>
+    <tr>
+      <th>GP</th>
+      <td>the Number of Games Played in that Season</td>
+    </tr>
+    <tr>
+      <th>MP</th>
+      <td>the Number of Minutes Played in that Season</td>
+    </tr>
+    <tr>
+      <th>Iso Poss</th>
+      <td>the number of isolation possessions (that ended in a FGA, FTA(s), or TOV from the iso player) defended by the player</td>
+    </tr>
+    <tr>
+      <th>Iso PPP</th>
+      <td>the number of points per possession allowed when defending the iso possession</td>
+    </tr>
+    <tr>
+      <th>Iso Freq%</th>
+      <td>isolation possessions defended divided by total possessions</td>
+    </tr>
+    <tr>
+      <th>Iso Percentile</th>
+      <td>the percentile ranking of Iso PPP</td>
+    </tr>
+    <tr>
+      <th>PnR BH Poss</th>
+      <td>the number of pick n roll possessions (that ended in a FGA, FTA(s), or TOV from the pick n roll ball handler) defended by the player</td>
+    </tr>
+    <tr>
+      <th>PnR BH PPP</th>
+      <td>the number of points per possession allowed when defending the pick n roll ball handler</td>
+    </tr>
+    <tr>
+      <th>PnR BH Freq%</th>
+      <td>pick n roll ball-handler possessions defended divided by total possessions</td>
+    </tr>
+    <tr>
+      <th>PnR BH Percentile</th>
+      <td>the percentile ranking of PnR BH PPP</td>
+    </tr>
+    <tr>
+      <th>PnR Screener Poss</th>
+      <td>the number of pick n roll possessions (that ended in a FGA, FTA(s), or TOV from the pick n roll screener) defended by the player</td>
+    </tr>
+    <tr>
+      <th>PnR Screener PPP</th>
+      <td>the number of points per possession allowed when defending the pick n roll screener</td>
+    </tr>
+    <tr>
+      <th>PnR Screener Freq%</th>
+      <td>pick n roll screener possessions defended divided by total possessions</td>
+    </tr>
+    <tr>
+      <th>PnR Screener Percentile</th>
+      <td>the percentile ranking of PnR Screener PPP</td>
+    </tr>
+    <tr>
+      <th>Post-up Poss</th>
+      <td>the number of post-up possessions (that ended in a FGA, FTA(s), or TOV from the post player) defended by the player</td>
+    </tr>
+    <tr>
+      <th>Post-up PPP</th>
+      <td>the number of points per possession allowed when defending the post up</td>
+    </tr>
+    <tr>
+      <th>Post-up Freq%</th>
+      <td>post up possessions defended divided by total possessions</td>
+    </tr>
+    <tr>
+      <th>Post-up Percentile</th>
+      <td>the percentile ranking of Post-up PPP</td>
+    </tr>
+    <tr>
+      <th>Spot-up Poss</th>
+      <td>the number of spot-up possessions (that ended in a FGA, FTA(s), or TOV from the spot up player) defended by the player</td>
+    </tr>
+    <tr>
+      <th>Spot-up PPP</th>
+      <td>the number of points per possession allowed when defending the spot up</td>
+    </tr>
+    <tr>
+      <th>Spot-up Freq%</th>
+      <td>spot-up possessions defended divided by total possessions</td>
+    </tr>
+    <tr>
+      <th>Spot-up Percentile</th>
+      <td>the percentile ranking of Spot-up PPP</td>
+    </tr>
+    <tr>
+      <th>Hand-off Poss</th>
+      <td>the number of hand-off possessions (that ended in a FGA, FTA(s), or TOV from the hand-off ball handler) defended by the player</td>
+    </tr>
+    <tr>
+      <th>Hand-off PPP</th>
+      <td>the number of points per possession allowed when defending the hand-off sets</td>
+    </tr>
+    <tr>
+      <th>Hand-off Freq%</th>
+      <td>hand-off possessions defended divided by total possessions</td>
+    </tr>
+    <tr>
+      <th>Hand-off Percentile</th>
+      <td>the percentile ranking of Hand-off PPP</td>
+    </tr>
+    <tr>
+      <th>Off-Screen Poss</th>
+      <td>the number of off-screen possessions (that ended in a FGA, FTA(s), or TOV from the off screen shooter) defended by the player</td>
+    </tr>
+    <tr>
+      <th>Off-Screen PPP</th>
+      <td>the number of points per possession allowed when defending the off-screen possession</td>
+    </tr>
+    <tr>
+      <th>Off-Screen Freq%</th>
+      <td>off-screen possessions defended divided by total possessions</td>
+    </tr>
+    <tr>
+      <th>Off-Screen Percentile</th>
+      <td>the percentile ranking of Off-Screen PPP</td>
+    </tr>
+  </table>
+{% endblock %}

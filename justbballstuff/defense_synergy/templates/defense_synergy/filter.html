@@ -1,0 +1,28 @@
+{% load bootstrap4 %}
+
+{% if filter %}
+  <form method="get">
+    <div class='row'>
+      <div class="form-group col-sm-4 col-md-4">
+        <h4 style="margin-top: 0">Player/Team/Season</h4>
+        {% bootstrap_field filter.form.player %}
+        {% bootstrap_field filter.form.team %}
+        {% bootstrap_field filter.form.season %}
+      </div>
+      <div class="form-group col-sm-4 col-md-4">
+        <h4 style="margin-top: 0">Age/Height/Weight</h4>
+        {% bootstrap_field filter.form.age %}
+        {% bootstrap_field filter.form.height_in %}
+        {% bootstrap_field filter.form.weight_lb %}
+      </div>
+      <div class="form-group col-sm-4 col-md-4">
+        <h4 style="margin-top: 0">Playing Time</h4>
+        {% bootstrap_field filter.form.games_played %}
+        {% bootstrap_field filter.form.minutes_played %}
+      </div>
+    </div>
+    <div class="form-group btn">
+    {% bootstrap_button 'filter' %}
+    </div>
+  </form>
+{% endif %}

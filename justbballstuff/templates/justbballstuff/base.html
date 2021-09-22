@@ -21,6 +21,9 @@
             <a class="nav-link {% if defensive_playmaking %}active{% endif %}" href="{% url 'defensive_playmaking:total' %}">DEFENSIVE PLAYMAKING</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link {% if defense_synergy %}active{% endif %}" href="{% url 'defense_synergy:total' %}">DEFENSIVE SYNERGY</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link {% if matchups %}active{% endif %}" href="{% url 'matchups:basic' %}">MATCHUPS</a>
           </li>
           <li class="nav-item">
