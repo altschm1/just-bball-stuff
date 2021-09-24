@@ -23,4 +23,5 @@ urlpatterns = [
     path('defensive-playmaking/', include('defensive_playmaking.urls')),
     path('rim-protection/', include('rim_protection.urls')),
     path('defensive-synergy/', include('defense_synergy.urls')),
+    path('defensive-rebounding/', include('defensive_rebounding.urls')),
 ]

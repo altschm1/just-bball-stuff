@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'defensive_playmaking.apps.DefensivePlaymakingConfig',
     'rim_protection.apps.RimProtectionConfig',
     'defense_synergy.apps.DefenseSynergyConfig',
+    'defensive_rebounding.apps.DefensiveReboundingConfig',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,61 @@
+{% extends "defensive_rebounding/base.html" %}
+
+{% block content %}
+  <h1 class='display-4'>Glossary</h1>
+  <p>Stats are provided in:</p>
+  <ul>
+    <li>Season Totals</li>
+    <li>Per Games</li>
+    <li>Per 36 Minutes</li>
+  </ul>
+  <table class="table table-striped">
+    <tr>
+      <th>PLAYER</th>
+      <td>Name of the Player</td>
+    </tr>
+    <tr>
+      <th>TEAM</th>
+      <td>Acronym of Team of the Player<br>TEAM is whatever team the player finished the season with (according to https://www.nba.com/stats/players/bio/ at least).</td>
+    </tr>
+    <tr>
+      <th>AGE</th>
+      <td>Age of the Player at the Start of that Season</td>
+    </tr>
+    <tr>
+      <th>HEIGHT</th>
+      <td>Height of the Player in feet and inches</td>
+    </tr>
+    <tr>
+      <th>WEIGHT</th>
+      <td>Weight of the Player in pounds</td>
+    </tr>
+    <tr>
+      <th>SEASON</th>
+      <td>Regular Season</td>
+    </tr>
+    <tr>
+      <th>GP</th>
+      <td>the Number of Games Played in that Season</td>
+    </tr>
+    <tr>
+      <th>MP</th>
+      <td>the Number of Minutes Played in that Season</td>
+    </tr>
+    <tr>
+      <th>DREB</th>
+      <td>the Number of Defensive Rebounds in that Season</td>
+    </tr>
+    <tr>
+      <th>DEF BOX OUT</th>
+      <td>The number of times a player made physical contact with an opponent who was actively pursuing a rebound, showed visible progress or strong effort in disadvantaging the opponent, and successfully prevented that opponent from securing the rebound</td>
+    </tr>
+    <tr>
+      <th>DREB RANK</th>
+      <td>the Percentile Rank of Defensive Rebounds for Players that Played at least 500 minutes</td>
+    </tr>
+    <tr>
+      <th>DEF BOX OUT RANK</th>
+      <td>the Percentile Rank of Defensive Box Outs for Players that Played at least 500 minutes</td>
+    </tr>
+  </table>
+{% endblock %}
