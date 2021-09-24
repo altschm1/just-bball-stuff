@@ -24,13 +24,13 @@ class TotalReboundingTable(tables.Table):
         if value < 0:
             return '-'
         else:
-            return f"{value:.2f}"
+            return value
 
     def render_dboxout(self, value, record):
         if value < 0:
             return '-'
         else:
-            return f"{value:.2f}"
+            return value
 
     def render_dreb_rank(self, value, record):
         if value < 0:

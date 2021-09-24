@@ -1,3 +1,4 @@
+# update
 from .models import RimProtectionStat
 import django_filters
 

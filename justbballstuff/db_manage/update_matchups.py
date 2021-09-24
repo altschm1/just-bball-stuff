@@ -64,6 +64,7 @@ Matchup.objects.bulk_create(model_instances)
 
 # update PlayerStat Model
 df = pd.read_csv(f'C:/Users/18562/matchup-data/nba-matchup-data/final_data/{season_param}/stats.csv')
+df.fillna(-1, inplace=True)
 records = df.to_dict('records')
 model_instances = [
     PlayerStat(

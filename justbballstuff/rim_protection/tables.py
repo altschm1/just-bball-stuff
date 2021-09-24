@@ -16,9 +16,9 @@ class TotalRimProtectionTable(tables.Table):
     def_fgm = tables.Column(verbose_name="DFGM", accessor="def_fgm")
     def_fga = tables.Column(verbose_name="DFGA", accessor="def_fga")
     def_fg_pct = tables.Column(verbose_name="DFG%", accessor="def_fg_pct")
-    points_saved = tables.Column(verbose_name="PTS SAVED", accessor="points_saved")
     def_fg_pct_score = tables.Column(verbose_name="DFG% SCORE", accessor="def_fg_pct_score")
-    points_saved_score = tables.Column(verbose_name="PTS SAVED SCORE", accessor="points_saved_score")
+    diff_fg_pct = tables.Column(verbose_name="Diff%", accessor="diff_fg_pct")
+    diff_fg_pct_score = tables.Column(verbose_name="Diff% SCORE", accessor="diff_fg_pct_score")
 
     def render_weight_lb(self, value, record):
         return str(value) + " lb"
@@ -30,10 +30,25 @@ class TotalRimProtectionTable(tables.Table):
         return f"{value:.2f}"
 
     def render_def_fg_pct_score(self, value, record):
-        return f"{value:.2f}"
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
 
     def render_points_saved_score(self, value, record):
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
+
+    def render_diff_fg_pct(self, value, record):
         return f"{value:.2f}"
+
+    def render_diff_fg_pct_score(self, value, record):
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
 
     class Meta:
         model = RimProtectionStat
@@ -52,9 +67,9 @@ class TotalRimProtectionTable(tables.Table):
             "def_fgm",
             "def_fga",
             "def_fg_pct",
-            "points_saved",
             "def_fg_pct_score",
-            "points_saved_score"
+            "diff_fg_pct",
+            "diff_fg_pct_score"
         )
 
 class PerGameRimProtectionTable(tables.Table):
@@ -70,9 +85,9 @@ class PerGameRimProtectionTable(tables.Table):
     def_fgm_per_game = tables.Column(verbose_name="DFGM", accessor="def_fgm_per_game")
     def_fga_per_game = tables.Column(verbose_name="DFGA", accessor="def_fga_per_game")
     def_fg_pct = tables.Column(verbose_name="DFG%", accessor="def_fg_pct")
-    points_saved_per_game = tables.Column(verbose_name="PTS SAVED", accessor="points_saved_per_game")
     def_fg_pct_score = tables.Column(verbose_name="DFG% SCORE", accessor="def_fg_pct_score")
-    points_saved_per_game_score = tables.Column(verbose_name="PTS SAVED SCORE", accessor="points_saved_per_game_score")
+    diff_fg_pct = tables.Column(verbose_name="Diff%", accessor="diff_fg_pct")
+    diff_fg_pct_score = tables.Column(verbose_name="Diff% SCORE", accessor="diff_fg_pct_score")
 
     def render_weight_lb(self, value, record):
         return str(value) + " lb"
@@ -86,14 +101,20 @@ class PerGameRimProtectionTable(tables.Table):
     def render_def_fg_pct(self, value, record):
         return f"{value:.2f}"
 
-    def render_points_saved_per_game(self, value, record):
-        return f"{value:.2f}"
-
     def render_def_fg_pct_score(self, value, record):
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
+
+    def render_diff_fg_pct(self, value, record):
         return f"{value:.2f}"
 
-    def render_points_saved_per_game_score(self, value, record):
-        return f"{value:.2f}"
+    def render_diff_fg_pct_score(self, value, record):
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
 
     class Meta:
         model = RimProtectionStat
@@ -112,9 +133,9 @@ class PerGameRimProtectionTable(tables.Table):
             "def_fgm_per_game",
             "def_fga_per_game",
             "def_fg_pct",
-            "points_saved_per_game",
             "def_fg_pct_score",
-            "points_saved_per_game_score"
+            "diff_fg_pct",
+            "diff_fg_pct_score"
         )
 
 class PerMinRimProtectionTable(tables.Table):
@@ -130,9 +151,9 @@ class PerMinRimProtectionTable(tables.Table):
     def_fgm_per_min = tables.Column(verbose_name="DFGM", accessor="def_fgm_per_min")
     def_fga_per_min = tables.Column(verbose_name="DFGA", accessor="def_fga_per_min")
     def_fg_pct = tables.Column(verbose_name="DFG%", accessor="def_fg_pct")
-    points_saved_per_min = tables.Column(verbose_name="PTS SAVED", accessor="points_saved_per_min")
     def_fg_pct_score = tables.Column(verbose_name="DFG% SCORE", accessor="def_fg_pct_score")
-    points_saved_per_min_score = tables.Column(verbose_name="PTS SAVED SCORE", accessor="points_saved_per_min_score")
+    diff_fg_pct = tables.Column(verbose_name="Diff%", accessor="diff_fg_pct")
+    diff_fg_pct_score = tables.Column(verbose_name="Diff% SCORE", accessor="diff_fg_pct_score")
 
     def render_weight_lb(self, value, record):
         return str(value) + " lb"
@@ -146,15 +167,20 @@ class PerMinRimProtectionTable(tables.Table):
     def render_def_fg_pct(self, value, record):
         return f"{value:.2f}"
 
-    def render_points_saved_per_min(self, value, record):
-        return f"{value:.2f}"
-
     def render_def_fg_pct_score(self, value, record):
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
+
+    def render_diff_fg_pct(self, value, record):
         return f"{value:.2f}"
 
-    def render_points_saved_per_min_score(self, value, record):
-        return f"{value:.2f}"
-
+    def render_diff_fg_pct_score(self, value, record):
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
 
     class Meta:
         model = RimProtectionStat
@@ -173,7 +199,7 @@ class PerMinRimProtectionTable(tables.Table):
             "def_fgm_per_min",
             "def_fga_per_min",
             "def_fg_pct",
-            "points_saved_per_min",
             "def_fg_pct_score",
-            "points_saved_per_min_score"
+            "diff_fg_pct",
+            "diff_fg_pct_score"
         )

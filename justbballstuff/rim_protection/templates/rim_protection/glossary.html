@@ -1,7 +1,7 @@
 {% extends "rim_protection/base.html" %}
 
 {% block content %}
-  <h1 class='display-4'>Glossary</h1>
+  <h1>Glossary</h1>
   <p class="alert alert-danger">Please Note: First, these stats are only recorded for centers/bigs because these specific stats are really only relevant for centers/bigs (unless future research proves otherwise).  That said, rim protection from guards/wings is still an important concept, it just comes in other/much-harder-to-quantify forms: good rotational defense from good stunts to deter drives, tagging rollers, sinking in to cover unguarded lob threats, and good on-ball defense like containing drives one-on-one or being smart in how you navigate on ball and off ball screens.  Second, these stats do not encompass all of rim protection as a whole even for bigs.  These stats do no quantify the ability to deter shots at the rim which is an extremely important concept of rim protection as a whole.  These stats do no quantify how well you defend shots at the rim without fouling which is a really important concept of rim protection as a whole.  That said, these stats are a good start for quanitfying rim protection from bigs, just don't let it be the finish line in the discourse.</p>
 
   <p>Stats are provided in:</p>
@@ -60,16 +60,16 @@
       <td>the FG% of shots contested within 6 feet of the rim</td>
     </tr>
     <tr>
-      <th>PTS SAVED</th>
-      <td>Compared to what the expected FG% of opposing scorers at the rim, how many points did the player prevent versus expected:<br> <code>2 * (DFGM - (exFG% * DFGA))</code><br>lower is better</td>
-    </tr>
-    <tr>
       <th>DFG% SCORE</th>
       <td>the DFG% percentile among players who played at least 500 minutes </td>
     </tr>
     <tr>
-      <th>PTS SAVED SCORE</th>
-      <td>the points saved percentile among players who played at least 500 minutes</td>
+      <th>Diff%</th>
+      <td>the difference in actual FG% of shots conested at the rim and predicted FG% of shots contested within 6 feet of the rim</td>
+    </tr>
+    <tr>
+      <th>Diff% SCORE</th>
+      <td>the Diff% percentile among players who played at least 500 minutes </td>
     </tr>
   </table>
 {% endblock %}

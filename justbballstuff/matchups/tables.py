@@ -144,10 +144,16 @@ class StatTable(tables.Table):
         return round(value, 2)
 
     def render_usage_score(self, value, record):
-        return "{0:.2f}".format(value)
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
 
     def render_versatility_score(self, value, record):
-        return "{0:.2f}".format(value)
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
 
     def render_matchup_height(self, value, record):
         return f"{int(value / 12)}'{value % 12}"

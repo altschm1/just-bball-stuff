@@ -44,6 +44,8 @@ df['blk_min'] = df['blk_min'].rank(pct=True)
 df['defl_min'] = df['defl_min'].rank(pct=True)
 df['stk_min'] = df['stk_min'].rank(pct=True)
 df['deal_min'] = df['deal_min'].rank(pct=True)
+df.fillna({'stl_game':-1, 'blk_game':-1, 'defl_game':-1, 'stk_game':-1, 'deal_game':-1}, inplace=True)
+df.fillna({'stl_min':-1, 'blk_min':-1, 'defl_min':-1, 'stk_min':-1, 'deal_min':-1}, inplace=True)
 
 print(df)
 records = df.to_dict('records')

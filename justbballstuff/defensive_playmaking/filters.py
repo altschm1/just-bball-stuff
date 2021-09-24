@@ -12,6 +12,7 @@ def get_seasons():
     return [(s['season'], s['season']) for s in seasons]
 
 
+
 class DefensivePlaymakingFilter(django_filters.FilterSet):
     player = django_filters.CharFilter(label="Player", lookup_expr='icontains')
     team = django_filters.MultipleChoiceFilter(label="Team", choices=get_teams())

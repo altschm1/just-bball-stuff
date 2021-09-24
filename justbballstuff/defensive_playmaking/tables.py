@@ -241,19 +241,37 @@ class RankPerGameDefensivePlaymakingTable(tables.Table):
         return str(value) + " lb"
 
     def render_steals(self, value, record):
-        return f"{float(value):.2f}"
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
 
     def render_blocks(self, value, record):
-        return f"{float(value):.2f}"
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
+
 
     def render_deflections(self, value, record):
-        return f"{float(value):.2f}"
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
+
 
     def render_stocks(self, value, record):
-        return f"{float(value):.2f}"
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
+
 
     def render_deals(self, value, record):
-        return f"{float(value):.2f}"
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
 
 
     class Meta:
@@ -295,19 +313,39 @@ class RankPerMinDefensivePlaymakingTable(tables.Table):
         return str(value) + " lb"
 
     def render_steals(self, value, record):
-        return f"{float(value):.2f}"
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
+
 
     def render_blocks(self, value, record):
-        return f"{float(value):.2f}"
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
+
 
     def render_deflections(self, value, record):
-        return f"{float(value):.2f}"
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
+
 
     def render_stocks(self, value, record):
-        return f"{float(value):.2f}"
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
+
 
     def render_deals(self, value, record):
-        return f"{float(value):.2f}"
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
+
 
 
     class Meta:
