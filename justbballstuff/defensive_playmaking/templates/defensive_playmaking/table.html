@@ -4,7 +4,7 @@
 
 {% block content %}
   <h4 class='display-4'>{{ title_head }}</h4>
-  <p>For every player, get steals, blocks, deflections, stocks (steals + blocks), and deals (deflections + steals) since 2017-18.</p>
+  <p>Get steals, blocks, deflections, stocks (steals + blocks), deals (deflections + steals), charges drawn, offensive fouls drawn, and shooting fouls since 2017-18..  Stats come in Total, Per Game, and Per 36 Minutes, alonged with rank percentiles for players who played at least 500 minutes.</p>
   {% include 'defensive_playmaking/filters.html' %}
   {% render_table table %}
 {% endblock %}

@@ -13,18 +13,27 @@ class DefensivePlaymakingStat(models.Model):
     steals = models.IntegerField(default=0)
     blocks = models.IntegerField(default=0)
     deflections = models.IntegerField(default=0)
+    charges = models.IntegerField(default=0)
+    off_fouls_drawn = models.IntegerField(default=0)
+    shooting_fouls = models.IntegerField(default=0)
 
     rank_per_game_steals = models.FloatField(default=0.0, null=True)
     rank_per_game_blocks = models.FloatField(default=0.0, null=True)
     rank_per_game_deflections = models.FloatField(default=0.0, null=True)
     rank_per_game_stocks = models.FloatField(default=0.0, null=True)
     rank_per_game_deals = models.FloatField(default=0.0, null=True)
+    rank_per_game_charges = models.FloatField(default=0.0, null=True)
+    rank_per_game_off_fouls_drawn = models.FloatField(default=0.0, null=True)
+    rank_per_game_shooting_fouls = models.FloatField(default=0.0, null=True)
 
     rank_per_min_steals = models.FloatField(default=0.0, null=True)
     rank_per_min_blocks = models.FloatField(default=0.0, null=True)
     rank_per_min_deflections = models.FloatField(default=0.0, null=True)
     rank_per_min_stocks = models.FloatField(default=0.0, null=True)
     rank_per_min_deals = models.FloatField(default=0.0, null=True)
+    rank_per_min_charges = models.FloatField(default=0.0, null=True)
+    rank_per_min_off_fouls_drawn = models.FloatField(default=0.0, null=True)
+    rank_per_min_shooting_fouls = models.FloatField(default=0.0, null=True)
 
     class Meta:
         unique_together = ('player', 'season')

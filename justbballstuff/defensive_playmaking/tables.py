@@ -17,6 +17,9 @@ class TotalDefensivePlaymakingTable(tables.Table):
     deflections = tables.Column(verbose_name="DEFLECTIONS", accessor="deflections")
     deals = tables.Column(verbose_name="DEALS", accessor="get_deals")
     stocks = tables.Column(verbose_name="STOCKS", accessor="get_stocks")
+    charges = tables.Column(verbose_name="CHARGES", accessor="charges")
+    off_fouls_drawn = tables.Column(verbose_name="OFF FOULS DRAWN", accessor="off_fouls_drawn")
+    shooting_fouls = tables.Column(verbose_name="SHOOTING FOULS", accessor='shooting_fouls')
 
     def render_weight_lb(self, value, record):
         return str(value) + " lb"
@@ -52,6 +55,9 @@ class TotalDefensivePlaymakingTable(tables.Table):
             "deflections",
             "stocks",
             "deals",
+            "charges",
+            "off_fouls_drawn",
+            "shooting_fouls",
         )
 
 class PerGameDefensivePlaymakingTable(tables.Table):
@@ -68,6 +74,9 @@ class PerGameDefensivePlaymakingTable(tables.Table):
     deflections = tables.Column(verbose_name="DEFLECTIONS", accessor="deflections")
     deals = tables.Column(verbose_name="DEALS", accessor="get_deals")
     stocks = tables.Column(verbose_name="STOCKS", accessor="get_stocks")
+    charges = tables.Column(verbose_name="CHARGES", accessor="charges")
+    off_fouls_drawn = tables.Column(verbose_name="OFF FOULS DRAWN", accessor="off_fouls_drawn")
+    shooting_fouls = tables.Column(verbose_name="SHOOTING FOULS", accessor='shooting_fouls')
 
     def render_weight_lb(self, value, record):
         return str(value) + " lb"
@@ -102,6 +111,24 @@ class PerGameDefensivePlaymakingTable(tables.Table):
         ).order_by(("-" if is_descending else "") + "defl")
         return (queryset, True)
 
+    def order_charges(self, queryset, is_descending):
+        queryset = queryset.annotate(
+            defl = Cast("charges", FloatField()) / Cast("games_played", FloatField())
+        ).order_by(("-" if is_descending else "") + "defl")
+        return (queryset, True)
+
+    def order_off_fouls_drawn(self, queryset, is_descending):
+        queryset = queryset.annotate(
+            defl = Cast("off_fouls_drawn", FloatField()) / Cast("games_played", FloatField())
+        ).order_by(("-" if is_descending else "") + "defl")
+        return (queryset, True)
+
+    def order_shooting_fouls(self, queryset, is_descending):
+        queryset = queryset.annotate(
+            defl = Cast("shooting_fouls", FloatField()) / Cast("games_played", FloatField())
+        ).order_by(("-" if is_descending else "") + "defl")
+        return (queryset, True)
+
     def render_steals(self, value, record):
         return f"{float(value) / float(record.games_played):.2f}"
 
@@ -117,6 +144,14 @@ class PerGameDefensivePlaymakingTable(tables.Table):
     def render_deals(self, value, record):
         return f"{float(value) / float(record.games_played):.2f}"
 
+    def render_charges(self, value, record):
+        return f"{float(value) / float(record.games_played):.2f}"
+
+    def render_off_fouls_drawn(self, value, record):
+        return f"{float(value) / float(record.games_played):.2f}"
+
+    def render_shooting_fouls(self, value, record):
+        return f"{float(value) / float(record.games_played):.2f}"
 
     class Meta:
         model = DefensivePlaymakingStat
@@ -136,6 +171,9 @@ class PerGameDefensivePlaymakingTable(tables.Table):
             "deflections",
             "stocks",
             "deals",
+            "charges",
+            "off_fouls_drawn",
+            "shooting_fouls",
         )
 
 class PerMinDefensivePlaymakingTable(tables.Table):
@@ -152,6 +190,9 @@ class PerMinDefensivePlaymakingTable(tables.Table):
     deflections = tables.Column(verbose_name="DEFLECTIONS", accessor="deflections")
     deals = tables.Column(verbose_name="DEALS", accessor="get_deals")
     stocks = tables.Column(verbose_name="STOCKS", accessor="get_stocks")
+    charges = tables.Column(verbose_name="CHARGES", accessor="charges")
+    off_fouls_drawn = tables.Column(verbose_name="OFF FOULS DRAWN", accessor="off_fouls_drawn")
+    shooting_fouls = tables.Column(verbose_name="SHOOTING FOULS", accessor='shooting_fouls')
 
     def render_weight_lb(self, value, record):
         return str(value) + " lb"
@@ -186,6 +227,24 @@ class PerMinDefensivePlaymakingTable(tables.Table):
         ).order_by(("-" if is_descending else "") + "defl")
         return (queryset, True)
 
+    def order_charges(self, queryset, is_descending):
+        queryset = queryset.annotate(
+            defl = Cast("charges", FloatField()) / Cast("minutes_played", FloatField())
+        ).order_by(("-" if is_descending else "") + "defl")
+        return (queryset, True)
+
+    def order_off_fouls_drawn(self, queryset, is_descending):
+        queryset = queryset.annotate(
+            defl = Cast("off_fouls_drawn", FloatField()) / Cast("minutes_played", FloatField())
+        ).order_by(("-" if is_descending else "") + "defl")
+        return (queryset, True)
+
+    def order_shooting_fouls(self, queryset, is_descending):
+        queryset = queryset.annotate(
+            defl = Cast("shooting_fouls", FloatField()) / Cast("minutes_played", FloatField())
+        ).order_by(("-" if is_descending else "") + "defl")
+        return (queryset, True)
+
     def render_steals(self, value, record):
         return f"{36.0 * float(value) / float(record.minutes_played):.2f}"
 
@@ -199,6 +258,15 @@ class PerMinDefensivePlaymakingTable(tables.Table):
         return f"{36.0 * float(value) / float(record.minutes_played):.2f}"
 
     def render_deals(self, value, record):
+        return f"{36.0 * float(value) / float(record.minutes_played):.2f}"
+
+    def render_charges(self, value, record):
+        return f"{36.0 * float(value) / float(record.minutes_played):.2f}"
+
+    def render_off_fouls_drawn(self, value, record):
+        return f"{36.0 * float(value) / float(record.minutes_played):.2f}"
+
+    def render_shooting_fouls(self, value, record):
         return f"{36.0 * float(value) / float(record.minutes_played):.2f}"
 
 
@@ -220,6 +288,9 @@ class PerMinDefensivePlaymakingTable(tables.Table):
             "deflections",
             "stocks",
             "deals",
+            "charges",
+            "off_fouls_drawn",
+            "shooting_fouls",
         )
 
 class RankPerGameDefensivePlaymakingTable(tables.Table):
@@ -236,6 +307,9 @@ class RankPerGameDefensivePlaymakingTable(tables.Table):
     deflections = tables.Column(verbose_name="DEFLECTIONS", accessor="rank_per_game_deflections")
     deals = tables.Column(verbose_name="DEALS", accessor="rank_per_game_deals")
     stocks = tables.Column(verbose_name="STOCKS", accessor="rank_per_game_stocks")
+    charges = tables.Column(verbose_name="CHARGES", accessor="rank_per_game_charges")
+    off_fouls_drawn = tables.Column(verbose_name="OFF FOULS DRAWN", accessor="rank_per_game_off_fouls_drawn")
+    shooting_fouls = tables.Column(verbose_name="SHOOTING FOULS", accessor='rank_per_game_shooting_fouls')
 
     def render_weight_lb(self, value, record):
         return str(value) + " lb"
@@ -259,15 +333,31 @@ class RankPerGameDefensivePlaymakingTable(tables.Table):
         else:
             return f"{float(value):.2f}"
 
-
     def render_stocks(self, value, record):
         if value < 0:
             return '-'
         else:
             return f"{float(value):.2f}"
 
-
     def render_deals(self, value, record):
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
+
+    def render_charges(self, value, record):
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
+
+    def render_off_fouls_drawn(self, value, record):
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
+
+    def render_shooting_fouls(self, value, record):
         if value < 0:
             return '-'
         else:
@@ -292,6 +382,9 @@ class RankPerGameDefensivePlaymakingTable(tables.Table):
             "deflections",
             "stocks",
             "deals",
+            "charges",
+            "off_fouls_drawn",
+            "shooting_fouls",
         )
 
 class RankPerMinDefensivePlaymakingTable(tables.Table):
@@ -308,6 +401,10 @@ class RankPerMinDefensivePlaymakingTable(tables.Table):
     deflections = tables.Column(verbose_name="DEFLECTIONS", accessor="rank_per_min_deflections")
     deals = tables.Column(verbose_name="DEALS", accessor="rank_per_min_deals")
     stocks = tables.Column(verbose_name="STOCKS", accessor="rank_per_min_stocks")
+    charges = tables.Column(verbose_name="CHARGES", accessor="rank_per_min_charges")
+    off_fouls_drawn = tables.Column(verbose_name="OFF FOULS DRAWN", accessor="rank_per_min_off_fouls_drawn")
+    shooting_fouls = tables.Column(verbose_name="SHOOTING FOULS", accessor='rank_per_min_shooting_fouls')
+
 
     def render_weight_lb(self, value, record):
         return str(value) + " lb"
@@ -346,7 +443,23 @@ class RankPerMinDefensivePlaymakingTable(tables.Table):
         else:
             return f"{float(value):.2f}"
 
+    def render_charges(self, value, record):
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
 
+    def render_off_fouls_drawn(self, value, record):
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
+
+    def render_shooting_fouls(self, value, record):
+        if value < 0:
+            return '-'
+        else:
+            return f"{float(value):.2f}"
 
     class Meta:
         model = DefensivePlaymakingStat
@@ -366,4 +479,7 @@ class RankPerMinDefensivePlaymakingTable(tables.Table):
             "deflections",
             "stocks",
             "deals",
+            "charges",
+            "off_fouls_drawn",
+            "shooting_fouls",
         )

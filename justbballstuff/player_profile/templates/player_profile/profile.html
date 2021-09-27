@@ -1,0 +1,333 @@
+{% extends "player_profile/base.html" %}
+{% load render_table from django_tables2 %}
+{% load bootstrap4 %}
+
+{% block content %}
+  <h4 class='display-4'>{{ player }}</h4>
+  <h4>BIO</h4>
+  <table class='table table-striped'>
+    <tr>
+      <th>PLAYER</th>
+      <td>{{ player.player }}</td>
+    </tr>
+    <tr>
+      <th>SEASON</th>
+      <td>{{ player.season }}</td>
+    </tr>
+    <tr>
+      <th>TEAM</th>
+      <td>{{ player.team }}</td>
+    </tr>
+    <tr>
+      <th>AGE</th>
+      <td>{{ player.age }}</td>
+    </tr>
+    <tr>
+      <th>HEIGHT</th>
+      <td>{{ player.get_height }}</td>
+    </tr>
+    <tr>
+      <th>WEIGHT</th>
+      <td>{{ player.weight_lb }} lbs</td>
+    </tr>
+  </table>
+  <br>
+  <h4>ROLE</h4>
+  <table class='table table-striped'>
+    <tr>
+      <th>DEFENSIVE PARTIAL POSS</th>
+      <td>{{ poss }}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>AVERAGE OPPOSING HEIGHT</th>
+      <td>{{ opp_height }}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>AVERAGE OPPOSING WEIGHT</th>
+      <td>{{ opp_weight }} lbs</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>MOST FREQUENTLY DEFENDS:</th>
+      <td>{{ position }}</td>
+      <td class="text-danger">{{ position_note }}</td>
+    </tr>
+    <tr>
+      <th rowspan="{{ primary_positions|length }}">PRIMARILY DEFENDS (over 30% of the time):</th>
+        {% for pos, desc in primary_positions.items %}
+          <td>{{ pos }}</td>
+          <td class="text-danger">{{ desc }}</td>
+          </tr>
+          {% if not forloop.last %}
+            <tr>
+          {% endif %}
+        {% endfor %}
+    <tr>
+      <th {% if secondary_positions|length > 0 %}rowspan="{{ secondary_positions|length }}"{% endif %}>WILL ALSO DEFEND (over 15% of the time):</th>
+        {% if secondary_positions|length == 0 %}
+          <td>N/A</td>
+          <td></td>
+          </tr>
+        {% else %}
+        {% for pos, desc in secondary_positions.items %}
+          <td>{{ pos }}</td>
+          <td class="text-danger">{{ desc }}</td>
+          </tr>
+          {% if not forloop.last %}
+            <tr>
+          {% endif %}
+        {% endfor %}
+        {% endif %}
+    <tr>
+      <th {% if no_positions|length > 0 %}rowspan="{{ no_positions|length }}"{% endif %}>WILL NOT FREQUENTLY DEFEND (less than 10% of the time):</th>
+        {% if no_positions|length == 0 %}
+          <td>N/A</td>
+          <td></td>
+          </tr>
+        {% else %}
+          {% for pos, desc in no_positions.items %}
+            <td>{{ pos }}</td>
+            <td class="text-danger">{{ desc }}</td>
+            </tr>
+            {% if not forloop.last %}
+              <tr>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+    <tr>
+      <th>DEFENSIVE RESPONSIBILITIES</th>
+      <td>{{ role }}</td>
+      <td class="text-danger">{{ role_note }}</td>
+    </tr>
+    <tr>
+      <th>TOP 10 MOST FREQUENT ASSIGNMENTS</th>
+      <td colspan="2">
+        {% for opp_player in opposing_matchups %}
+          {{ opp_player }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+      </td>
+    </tr>
+    <tr>
+      <th>TOP 3 MOST FREQUENT PLAYTYPES DEFENDED</th>
+      <td colspan="2">
+        {% for opp_playtype in top_synergy %}
+          {{ opp_playtype }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+      </td>
+    </tr>
+  </table>
+  <br>
+  <h4>PRODUCTION</h4>
+  <table class='table table-striped'>
+    <tr>
+      <th>STAT</th>
+      <th>per 36 mins</th>
+      <th>RANK</th>
+      <th style="width: 33%;"></th>
+    </tr>
+    <tr>
+      <th>MATCHUP DIFFICULTY</th>
+        {% if matchup_difficulty.percentile >= 0 %}
+          <td>-</td>
+          <td>{{ matchup_difficulty.desc }} | {{ matchup_difficulty.percentile }}/100</td>
+          <td>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped {{ matchup_difficulty.color }} progress-bar-animated" role="progressbar" style="width: {{ matchup_difficulty.percentile }}%" aria-valuenow="{{ matchup_difficulty.percentile }}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </td>
+        {% else %}
+          <td>-</td>
+          <td>N/A</td>
+          <td></td>
+        {% endif %}
+    </tr>
+    <tr>
+      <th>MATCHUP VERSATILITY</th>
+      {% if matchup_versatility.percentile >= 0 %}
+        <td>-</td>
+        <td>{{ matchup_versatility.desc }} | {{ matchup_versatility.percentile }}/100</td>
+        <td>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped {{ matchup_versatility.color }} progress-bar-animated" role="progressbar" style="width: {{ matchup_versatility.percentile }}%" aria-valuenow="{{ matchup_versatility.percentile }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </td>
+      {% else %}
+        <td>-</td>
+        <td>N/A</td>
+        <td></td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th>STEALS</th>
+      <td>{{ steals.per_36 }}</td>
+      {% if steals.percentile >= 0 %}
+        <td>{{ steals.desc }} | {{ steals.percentile }}/100</td>
+        <td>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped {{ steals.color }} progress-bar-animated" role="progressbar" style="width: {{ steals.percentile }}%" aria-valuenow="{{ steals.percentile }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </td>
+      {% else %}
+        <td>N/A</td>
+        <td></td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th>BLOCKS</th>
+      <td>{{ blocks.per_36 }}</td>
+      {% if blocks.percentile >= 0 %}
+        <td>{{ blocks.desc }} | {{ blocks.percentile }}/100</td>
+        <td>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped {{ blocks.color }} progress-bar-animated" role="progressbar" style="width: {{ blocks.percentile }}%" aria-valuenow="{{ blocks.percentile }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </td>
+      {% else %}
+        <td>N/A</td>
+        <td></td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th>DEFLECTIONS</th>
+      <td>{{ deflections.per_36 }}</td>
+      {% if deflections.percentile >= 0 %}
+        <td>{{ deflections.desc }} | {{ deflections.percentile }}/100</td>
+        <td>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped {{ deflections.color }} progress-bar-animated" role="progressbar" style="width: {{ deflections.percentile }}%" aria-valuenow="{{ deflections.percentile }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </td>
+      {% else %}
+        <td>N/A</td>
+        <td></td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th>STOCKS</th>
+      <td>{{ stocks.per_36 }}</td>
+      {% if stocks.percentile >= 0 %}
+        <td>{{ stocks.desc }} | {{ stocks.percentile }}/100</td>
+        <td>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped {{ stocks.color }} progress-bar-animated" role="progressbar" style="width: {{ stocks.percentile }}%" aria-valuenow="{{ stocks.percentile }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </td>
+      {% else %}
+        <td>N/A</td>
+        <td></td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th>DEALS</th>
+      <td>{{ deals.per_36 }}</td>
+      {% if deals.percentile >= 0 %}
+        <td>{{ deals.desc }} | {{ deals.percentile }}/100</td>
+        <td>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped {{ deals.color }} progress-bar-animated" role="progressbar" style="width: {{ deals.percentile }}%" aria-valuenow="{{ deals.percentile }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </td>
+      {% else %}
+        <td>N/A</td>
+        <td></td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th>CHARGES DRAWN</th>
+      <td>{{ charges.per_36 }}</td>
+      {% if charges.percentile >= 0 %}
+        <td>{{ charges.desc }} | {{ charges.percentile }}/100</td>
+        <td>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped {{ charges.color }} progress-bar-animated" role="progressbar" style="width: {{ charges.percentile }}%" aria-valuenow="{{ charges.percentile }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </td>
+      {% else %}
+        <td>N/A</td>
+        <td></td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th>OFF FOULS DRAWN</th>
+      <td>{{ off_fouls_drawn.per_36 }}</td>
+      {% if off_fouls_drawn.percentile >= 0 %}
+        <td>{{ off_fouls_drawn.desc }} | {{ off_fouls_drawn.percentile }}/100</td>
+        <td>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped {{ off_fouls_drawn.color }} progress-bar-animated" role="progressbar" style="width: {{ off_fouls_drawn.percentile }}%" aria-valuenow="{{ off_fouls_drawn.percentile }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </td>
+      {% else %}
+        <td>N/A</td>
+        <td></td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th>SHOOTING FOULS COMMITTED</th>
+      <td>{{shooting_fouls.per_36 }}</td>
+      {% if shooting_fouls.percentile >= 0 %}
+        <td>{{ shooting_fouls.desc }} | {{ shooting_fouls.percentile }}/100</td>
+        <td>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped {{ shooting_fouls.color }} progress-bar-animated" role="progressbar" style="width: {{ shooting_fouls.percentile }}%" aria-valuenow="{{ shooting_fouls.percentile }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </td>
+      {% else %}
+        <td>N/A</td>
+        <td></td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th>DEF REBOUNDS</th>
+      <td>{{ dreb.per_36 }}</td>
+      {% if dreb.percentile >= 0 %}
+        <td>{{ dreb.desc }} | {{ dreb.percentile }}/100</td>
+        <td>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped {{ dreb.color }} progress-bar-animated" role="progressbar" style="width: {{ dreb.percentile }}%" aria-valuenow="{{ dreb.percentile }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </td>
+      {% else %}
+        <td>N/A</td>
+        <td></td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th>DEF BOX OUTS</th>
+      <td>{{ boxouts.per_36 }}</td>
+      {% if boxouts.percentile >= 0 %}
+        <td>{{ boxouts.desc }} | {{ boxouts.percentile }}/100</td>
+        <td>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped {{ boxouts.color }} progress-bar-animated" role="progressbar" style="width: {{ boxouts.percentile }}%" aria-valuenow="{{ boxouts.percentile }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </td>
+      {% else %}
+        <td>N/A</td>
+        <td></td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th>CONTESTING SHOTS AT RIM</th>
+      {% if contesting_rim_shots %}
+        <td>{{ contesting_rim_shots.per_36 }}</td>
+        {% if contesting_rim_shots.percentile >= 0 %}
+          <td>{{ contesting_rim_shots.desc }} | {{ contesting_rim_shots.percentile }}/100</td>
+          <td>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped {{ contesting_rim_shots.color }} progress-bar-animated" role="progressbar" style="width: {{ contesting_rim_shots.percentile }}%" aria-valuenow="{{ contesting_rim_shots.percentile }}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </td>
+        {% else %}
+          <td>N/A</td>
+          <td></td>
+        {% endif %}
+      {% else %}
+        <td>N/A</td>
+        <td>N/A</td>
+      {% endif %}
+    </tr>
+  </table>
+{% endblock %}

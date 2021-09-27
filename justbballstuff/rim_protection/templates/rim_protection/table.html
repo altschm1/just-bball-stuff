@@ -4,7 +4,7 @@
 
 {% block content %}
   <h4 class='display-4'>{{ title_head }}</h4>
-  <p>For every player that has been designated a non guard who of all contested FGAs, contested 30% of them at the rim since 2017-18, get defended FG% at the rim along with the difference in actual FG% versus expected FG% along with percentiles for players who played at least 500 minutes.</p>
+  <p>Get defended FG% within 6 feet of the rim along with the difference between FG% allowed at the rim versus expected FG% for every non-guard that defends at least 30% of their contested shots at the rim.  Stats come in Total, Per Game, and Per 36 Minutes, alonged with rank percentiles for players who played at least 500 minutes.</p>
   {% include 'rim_protection/filters.html' %}
   {% render_table table %}
 {% endblock %}

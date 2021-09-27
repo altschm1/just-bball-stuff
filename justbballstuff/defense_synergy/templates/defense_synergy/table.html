@@ -4,7 +4,7 @@
 
 {% block content %}
   <h4 class='display-4'>{{ title_head }}</h4>
-  <p>For every player, get defensive synergy stats since 2017-18.</p>
+  <p>Get all the defensive playtype data from synergy that has taken place since 2017-18.  Playtypes include isolations, pick n roll ball handlers, pick n roll screeners, spot-ups, post-ups, hand-offs, and off-screens.  Stats include possessions, points per possessions, frequency of play-type, and percentile rank for points per possessions.</p>
   {% include 'defense_synergy/filter.html' %}
   {% render_table table %}
 {% endblock %}

@@ -3,17 +3,21 @@
 {% block content %}
   <h1 class='text-center display-1'>Just BBall Stuff</h1>
   <h2 class='text-center display-4'>A fun website filled with basketball-related stuff.</h2>
-  <h4 class='text-center'>Get all the useful, fun stats from <a target="_blank" rel="noopener noreferrer" href='https://www.nba.com/stats/'>stats.nba.com</a> (with enhancements here and there) broken down into easy-to-read subsections.  Currently, I am at <i>Matchups</i>, <i>Defensive Playmaking</i>, and <i>Rim Protection</i> but I am still looking to add more sections.  All stats start from 2017-18 (the season that Matchup data became available).</h4>
+  <h4 class='text-center'>Get all the useful, fun stats from <a target="_blank" rel="noopener noreferrer" href='https://www.nba.com/stats/'>stats.nba.com</a> (with enhancements here and there) broken down into easy-to-read subsections.  All stats start from 2017-18 (the season that Matchup data became available).</h4>
   <p class='text-center'>This entire project is open-sourced.  All code for the website and source data will be publically available on Github repos.  If you have any questions, suggestions or potential areas of improvements, feel free to DM me at @schuler76 on Twitter or even feel free to contribute to the codebase/project.  And also please feel free to share this project to anyone that can and will benefit from this.</p>
 
   <div class='row'>
     <div class='form-group col-md-4'>
       <h4 class='text-center display-4'><a href="{% url 'defensive_playmaking:total' %}">Defensive Playmaking</a></h4>
-      <p class='text-center'>For every player, get steals, blocks, deflections, stocks (steals + blocks), and deals (deflections + steals) since 2017-18.  Stats come in Total, Per Game, and Per 36 Minutes, alonged with rank percentiles for players who played at least 500 minutes.</p>
+      <p class='text-center'>Get steals, blocks, deflections, stocks (steals + blocks), deals (deflections + steals), charges drawn, offensive fouls drawn, and shooting fouls since 2017-18.  Stats come in Total, Per Game, and Per 36 Minutes, alonged with rank percentiles for players who played at least 500 minutes.</p>
+    </div>
+    <div class='form-group col-md-4'>
+      <h4 class='text-center display-4'><a href="{% url 'defensive_rebounding:total' %}">Defensive Rebounding</a></h4>
+      <p class='text-center'>Get Defensive Rebounds and Defensive Boxouts since 2017-18 for every player.  Stats come in Total, Per Game, and Per 36 Minutes, alonged with rank percentiles for players who played at least 500 minutes.</p>
     </div>
     <div class='form-group col-md-4'>
       <h4 class='text-center display-4'><a href="{% url 'defense_synergy:total' %}">Defensive Synergy</a></h4>
-      <p class='text-center'>Get all the defensive playtype data from synergy that has taken place since 2017-18.  Playtypes include isolations, pick n roll ball handlers, pick n roll screeners, spot-ups, post-ups, hand-offs, and off-screens.  Stats include possessions, points per possessions, frequency of play-type, and percentile of points per possessions.</p>
+      <p class='text-center'>Get all the defensive playtype data from synergy that has taken place since 2017-18.  Playtypes include isolations, pick n roll ball handlers, pick n roll screeners, spot-ups, post-ups, hand-offs, and off-screens.  Stats include possessions, points per possessions, frequency of play-type, and percentile rank for points per possessions.</p>
     </div>
     <div class='form-group col-md-4'>
       <h4 class='text-center display-4'><a href="{% url 'matchups:basic' %}">Matchups</a></h4>
@@ -21,7 +25,7 @@
     </div>
     <div class='form-group col-md-4'>
       <h4 class='text-center display-4'><a href="{% url 'rim_protection:total' %}">Rim Protection</a></h4>
-      <p class='text-center'>For every player that has been designated a C per stats.nba.com since 2017-18, get defended FG% along with points saved versus expected.  Stats come in Total, Per Game, and Per 36 Minutes, alonged with rank percentiles for players who played at least 500 minutes.</p>
+      <p class='text-center'>Get defended FG% within 6 feet of the rim along with the difference between FG% allowed at the rim versus expected FG% for every non-guard that defends at least 30% of their contested shots at the rim.  Stats come in Total, Per Game, and Per 36 Minutes, alonged with rank percentiles for players who played at least 500 minutes.</p>
     </div>
   </div>
 {% endblock %}
