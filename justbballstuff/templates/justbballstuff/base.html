@@ -18,22 +18,10 @@
             <a class="nav-link {% if about %}active{% endif %}" href="{% url 'homepage:about' %}">ABOUT</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% if profiles %}active{% endif %}" href="{% url 'player_profile:defense_index' %}">PROFILES</a>
+            <a class="nav-link {% if offense %}active{% endif %}" href="{% url 'player_profile:offense_index' %}">OFFENSIVE PROFILES</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% if defensive_playmaking %}active{% endif %}" href="{% url 'defensive_playmaking:total' %}">DEFENSIVE PLAYMAKING</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if defensive_rebounding %}active{% endif %}" href="{% url 'defensive_rebounding:total' %}">DEFENSIVE REBOUNDING</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if defense_synergy %}active{% endif %}" href="{% url 'defense_synergy:total' %}">DEFENSIVE SYNERGY</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if matchups %}active{% endif %}" href="{% url 'matchups:basic' %}">MATCHUPS</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if rim_protection %}active{% endif %}" href="{% url 'rim_protection:total' %}">RIM PROTECTION</a>
+            <a class="nav-link {% if defense %}active{% endif %}" href="{% url 'player_profile:defense_index' %}">DEFENSIVE PROFILES</a>
           </li>
         </ul>
       </nav>

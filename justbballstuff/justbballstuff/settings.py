@@ -49,6 +49,13 @@ INSTALLED_APPS = [
     'defense_synergy.apps.DefenseSynergyConfig',
     'defensive_rebounding.apps.DefensiveReboundingConfig',
     'player_profile.apps.PlayerProfileConfig',
+    'scoring.apps.ScoringConfig',
+    'passing.apps.PassingConfig',
+    'ball_handling.apps.BallHandlingConfig',
+    'grunt_work.apps.GruntWorkConfig',
+    'playtype.apps.PlaytypeConfig',
+    'shot_chart.apps.ShotChartConfig',
+    'shot_difficulty.apps.ShotDifficultyConfig'
 ]
 
 MIDDLEWARE = [

@@ -35,6 +35,11 @@
   <h4>ROLE</h4>
   <table class='table table-striped'>
     <tr>
+      <th>MINUTES</th>
+      <td>{{ minutes }}</td>
+      <td></td>
+    </tr>
+    <tr>
       <th>DEFENSIVE PARTIAL POSS</th>
       <td>{{ poss }}</td>
       <td></td>
@@ -106,14 +111,6 @@
       <td colspan="2">
         {% for opp_player in opposing_matchups %}
           {{ opp_player }}{% if not forloop.last %}, {% endif %}
-        {% endfor %}
-      </td>
-    </tr>
-    <tr>
-      <th>TOP 3 MOST FREQUENT PLAYTYPES DEFENDED</th>
-      <td colspan="2">
-        {% for opp_playtype in top_synergy %}
-          {{ opp_playtype }}{% if not forloop.last %}, {% endif %}
         {% endfor %}
       </td>
     </tr>

@@ -6,26 +6,14 @@
   <h4 class='text-center'>Get all the useful, fun stats from <a target="_blank" rel="noopener noreferrer" href='https://www.nba.com/stats/'>stats.nba.com</a> (with enhancements here and there) broken down into easy-to-read subsections.  All stats start from 2017-18 (the season that Matchup data became available).</h4>
   <p class='text-center'>This entire project is open-sourced.  All code for the website and source data will be publically available on Github repos.  If you have any questions, suggestions or potential areas of improvements, feel free to DM me at @schuler76 on Twitter or even feel free to contribute to the codebase/project.  And also please feel free to share this project to anyone that can and will benefit from this.</p>
 
-  <div class='row'>
+  <div class='row d-flex justify-content-center flex-nowrap'>
     <div class='form-group col-md-4'>
-      <h4 class='text-center display-4'><a href="{% url 'defensive_playmaking:total' %}">Defensive Playmaking</a></h4>
-      <p class='text-center'>Get steals, blocks, deflections, stocks (steals + blocks), deals (deflections + steals), charges drawn, offensive fouls drawn, and shooting fouls since 2017-18.  Stats come in Total, Per Game, and Per 36 Minutes, alonged with rank percentiles for players who played at least 500 minutes.</p>
+      <h4 class='text-center display-4'><a href="{% url 'player_profile:offense_index' %}">Offensive Profiles</a></h4>
+      <p class='text-center'>Get comprehensive defensive profiles for every player since 2017-18 that quantifies and ranks scoring, passing, ball handling, breakdown of actions, shot charts, shot difficulty, and dirty work tasks (offensive rebounding, screen assists, shooting fouls drawn).</p>
     </div>
     <div class='form-group col-md-4'>
-      <h4 class='text-center display-4'><a href="{% url 'defensive_rebounding:total' %}">Defensive Rebounding</a></h4>
-      <p class='text-center'>Get Defensive Rebounds and Defensive Boxouts since 2017-18 for every player.  Stats come in Total, Per Game, and Per 36 Minutes, alonged with rank percentiles for players who played at least 500 minutes.</p>
-    </div>
-    <div class='form-group col-md-4'>
-      <h4 class='text-center display-4'><a href="{% url 'defense_synergy:total' %}">Defensive Synergy</a></h4>
-      <p class='text-center'>Get all the defensive playtype data from synergy that has taken place since 2017-18.  Playtypes include isolations, pick n roll ball handlers, pick n roll screeners, spot-ups, post-ups, hand-offs, and off-screens.  Stats include possessions, points per possessions, frequency of play-type, and percentile rank for points per possessions.</p>
-    </div>
-    <div class='form-group col-md-4'>
-      <h4 class='text-center display-4'><a href="{% url 'matchups:basic' %}">Matchups</a></h4>
-      <p class='text-center'>Get all the basic matchup data that has taken place since 2017-18 along with some aggregated stats to track matchup difficulty, versatility against different sized players, average height/weight played against and more to come.</p>
-    </div>
-    <div class='form-group col-md-4'>
-      <h4 class='text-center display-4'><a href="{% url 'rim_protection:total' %}">Rim Protection</a></h4>
-      <p class='text-center'>Get defended FG% within 6 feet of the rim along with the difference between FG% allowed at the rim versus expected FG% for every non-guard that defends at least 30% of their contested shots at the rim.  Stats come in Total, Per Game, and Per 36 Minutes, alonged with rank percentiles for players who played at least 500 minutes.</p>
+      <h4 class='text-center display-4'><a href="{% url 'player_profile:defense_index' %}">Defensive Profiles</a></h4>
+      <p class='text-center'>Get comprehensive defensive profiles for every player since 2017-18 that quantifies roles (opposing matchups, perimeter defender versus rim protector, etc) and ranks productions in various counting stats (steal, blocks, deflections, stocks (steals + blocks), deals (deflections + steals) and many more.)</p>
     </div>
   </div>
 {% endblock %}
